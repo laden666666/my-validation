@@ -1,0 +1,36 @@
+{
+  "name": "my-validation",
+  "version": "0.0.1",
+  "description": "一个验证库，可用于任意表单的验证逻辑。支持异步验证和自定义验证",
+  "main": "dist/my-validation.js",
+  "scripts": {
+    "test": "webpack;mocha ./test/test.js",
+    "build": "NODE_ENV=production webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laden666666/my-validation.git"
+  },
+  "keywords": [
+    "validation"
+  ],
+  "main": "dist/my-validation.js",
+  "author": "laden666666",
+  "devDependencies": {
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "mocha-cli": "^1.0.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laden666666/my-validation/issues"
+  },
+  "homepage": "https://github.com/laden666666/my-validation#readme"
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../dist/my-validation.js"></script>
+    <script>
+        myValidation.registerRule("logParameter", function () {
+            return false;
+        }, function () {
+            return JSON.stringify(Array.prototype.slice.call(arguments).splice(2,arguments.length - 2));
+        });
+
+        var result = myValidation.validation({
+            multipleParameter : "logParameter[1,2,test]",
+        },{
+            multipleParameter : null,
+        })
+        console.log(result);
+
+        var result = myValidation.validation({
+            multipleRule : "logParameter[test1];logParameter[test2]",
+        },{
+            multipleRule: null,
+        })
+        console.log(result);
+        //多个校验条件测试
+        var result = myValidation.validation({
+            transferred : "logParameter[;;,;,]",
+        },{
+            transferred: null,
+        })
+        //参数转义测试
+        console.log(result);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
