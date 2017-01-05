@@ -94,11 +94,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 *
-	 * @param ruleStrings        有两种形式 1:{name: ruleString} 2.[{name:name, rule:ruleString}...]
+	 * @param ruleStrings        有三种形式 1:{name: ruleString} 2.[{name:name, rule:ruleString}...] 3.字符串
 	 * @param values
 	 * @param isStringPath
 	 */
 	MyValidation.validation = function (ruleStringJson, values, isStringPath) {
+	    //ruleStringJson是字符串
+	    var isString = false;
+
 	    //将ruleStrings的两种形式都转为 {name: {name:name, rule:ruleString}}的形式
 	    var maps = {};
 	    var resultMaps = {};
@@ -110,6 +113,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                maps[item.name] = item;
 	            }
 	        }
+	    } else if (typeof ruleStringJson == "string") {
+	        isString = true;
+	        maps['name'] = {
+	            rule: ruleStringJson
+	        };
+	        values = { name: values };
 	    } else {
 	        for (var name in ruleStringJson) {
 	            var ruleString = ruleStringJson[name];
@@ -130,7 +139,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        resultMaps[name] = formValidation.$validation(value, maps[name], maps[name].rule);
 	    }
 
-	    return resultMaps;
+	    if (isString) {
+	        return resultMaps["name"];
+	    } else {
+	        return resultMaps;
+	    }
 	};
 
 	//构建一个简化的返回结果
@@ -400,10 +413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * 最少输入字符数
 	 */
 	var minSize = new _Rule2.default("minSize", function (value, object, count) {
-	    if (!value) {
-	        return false;
-	    }
-	    return value.length >= parseInt(count);
+	    return !!value && value.length >= parseInt(count);
 	}, function (value, object, count) {
 	    return "最少输入" + count + "个字符数";
 	});
@@ -412,10 +422,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * 最多输入字符数
 	 */
 	var maxSize = new _Rule2.default("maxSize", function (value, object, count) {
-	    if (!value) {
-	        return false;
-	    }
-	    return value.length <= parseInt(count);
+	    return !!value && value.length <= parseInt(count);
 	}, function (value, object, count) {
 	    return "最多输入" + count + "个字符数";
 	});
@@ -448,22 +455,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * 	验证数字
 	 */
 	var number = new _Rule2.default("number", function (value, object) {
-	    if (!value) {
-	        return false;
-	    }
-	    return (/^[-+]?\d+(\.\d+)?$/.test(value)
-	    );
+	    return !!value && /^[-+]?\d+(\.\d+)?$/.test(value);
 	}, "必须是数字");
 
 	/**
 	 * 	验证整数
 	 */
 	var integer = new _Rule2.default("integer", function (value, object) {
-	    if (!value) {
-	        return false;
-	    }
-	    return (/^[-+]?\d+$/.test(value)
-	    );
+	    return !!value && /^[-+]?\d+$/.test(value);
 	}, "必须是整数");
 
 	/**

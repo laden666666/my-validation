@@ -16,11 +16,14 @@ MyValidation.registerRule = function (name, validation, msg) {
 
 /**
  *
- * @param ruleStrings        有两种形式 1:{name: ruleString} 2.[{name:name, rule:ruleString}...]
+ * @param ruleStrings        有三种形式 1:{name: ruleString} 2.[{name:name, rule:ruleString}...] 3.字符串
  * @param values
  * @param isStringPath
  */
 MyValidation.validation = function (ruleStringJson, values, isStringPath) {
+    //ruleStringJson是字符串
+    var isString = false;
+
     //将ruleStrings的两种形式都转为 {name: {name:name, rule:ruleString}}的形式
     var maps = {};
     var resultMaps = {};
@@ -32,6 +35,12 @@ MyValidation.validation = function (ruleStringJson, values, isStringPath) {
                 maps[item.name] = item;
             }
         }
+    } else if(typeof ruleStringJson == "string") {
+        isString = true;
+        maps['name'] = {
+            rule : ruleStringJson,
+        };
+        values = {name : values};
     } else {
         for (var name in ruleStringJson){
             var ruleString = ruleStringJson[name]
@@ -52,7 +61,11 @@ MyValidation.validation = function (ruleStringJson, values, isStringPath) {
         resultMaps[name] = formValidation.$validation(value, maps[name], maps[name].rule);
     }
 
-    return resultMaps;
+    if(isString){
+        return resultMaps["name"];
+    } else {
+        return resultMaps;
+    }
 }
 
 //构建一个简化的返回结果

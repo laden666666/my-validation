@@ -10,6 +10,12 @@ describe('myValidation', function() {
         return JSON.stringify(Array.prototype.slice.call(arguments).splice(2,arguments.length - 2));
     });
 
+    myValidation.registerRule("returnMsg", function () {
+        return myValidation.result(false, "自定义错误!");
+    }, function () {
+        return "";
+    });
+
     it('多个参数测试', function() {
         var result = myValidation.validation({
             multipleParameter : "logParameter[1,2,test]",
@@ -85,6 +91,28 @@ describe('myValidation', function() {
         assert.equal(false, result.maxSize3[0].result);
     });
 
+    it('校验数字不大于', function() {
+        var result = myValidation.validation({
+            max1 : "max[5]",
+            max2 : "max[5]",
+            max3 : "max[5]",
+            max4 : "max[5]",
+            max5 : "max[5]",
+        },{
+            max1: "4",
+            max2: "5",
+            max3: "6",
+            max4: "notNumber",
+            max5: "5notNumber",
+        })
+        //校验数字不大于
+        assert.equal(true, result.max1[0].result)
+        assert.equal(true, result.max2[0].result);
+        assert.equal(false, result.max3[0].result);
+        assert.equal(false, result.max4[0].result)
+        assert.equal(false, result.max5[0].result);
+    });
+
     it('数字校验', function() {
         var result = myValidation.validation({
             number1 : "number",
@@ -105,7 +133,7 @@ describe('myValidation', function() {
             number7 : "01x",
             number8 : "x01",
         })
-        //字符串长度大于校验
+        //数字校验
         assert.equal(true, result.number1[0].result)
         assert.equal(true, result.number2[0].result);
         assert.equal(true, result.number3[0].result);
@@ -136,7 +164,7 @@ describe('myValidation', function() {
             integer7 : "01x",
             integer8 : "x01",
         })
-        //字符串长度大于校验
+        //整数校验
         assert.equal(true, result.integer1[0].result)
         assert.equal(true, result.integer2[0].result);
         assert.equal(true, result.integer3[0].result)
@@ -157,8 +185,27 @@ describe('myValidation', function() {
                 path2 : "test"
             }
         },true)
-        //字符串长度大于校验
+        //自动路径匹配测试
         assert.equal(true, result["path1.path2"][0].result)
         assert.equal(undefined, result["path3.path2"])
+    });
+
+    it('自定义错误提示', function() {
+        var result = myValidation.validation({
+            "returnMsg" : "returnMsg",
+
+        },{
+            "returnMsg" : ""
+        })
+        //自定义错误提示
+        assert.equal(false, result.returnMsg[0].result)
+        assert.equal("自定义错误!", result.returnMsg[0].failMessage)
+    });
+
+    it('直接字符串验证', function() {
+        var result = myValidation.validation("required", "test");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("required", "");
+        assert.equal(false, result[0].result)
     });
 });

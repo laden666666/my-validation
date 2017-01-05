@@ -8,6 +8,511 @@
     </style>
 </head>
 <body>
-
+<div contenteditable="true">
+    <div id="wmd-preview-section-10695" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h1 id="my-validation"
+            style="box-sizing: border-box; font-size: 2.6em; margin: 1.2em 0px 0.6em; font-family: inherit; line-height: 1.1; color: inherit; outline: none !important;">
+            my-validation</h1>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">
+            一个验证库，可用于任意表单的验证的逻辑部分的实现,没有页面、控件、dom操作，仅是逻辑部分。因为没有页面相关部分，所以可以做react
+            native、weex、微信小程序等各个平台的表单验证控件的中逻辑部分的实现，方便配合模板完成复杂的表单验证</p></div>
+    <div id="wmd-preview-section-67" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h3 id="安装方法"
+            style="box-sizing: border-box; font-family: inherit; line-height: 1.6; color: inherit; margin: 1.2em 0px 0.6em; font-size: 1.7em; outline: none !important;">
+            安装方法:</h3>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">
+            webpack中使用:</p></div>
+    <div id="wmd-preview-section-17" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs sql"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">npm <span
+                class="hljs-operator" style="box-sizing: border-box; outline: none !important; line-height: 1.6;"><span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">install</span> git://github.com/laden666666/my-<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">validation</span> <span
+                class="hljs-comment"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(117, 113, 94);">--save</span></span><br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">
+            然后直接用reqiure引用即可</p></div>
+    <div id="wmd-preview-section-444" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs javascript"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;"><span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">var</span> myValidation = <span
+                class="hljs-built_in"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">require</span>(<span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"my-validation"</span>);<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">
+            如果是web环境直接script标签引用my-validation.js或者my-validation.min.js文件即可。</p>
+        <hr style="box-sizing: content-box; height: 0px; margin: 2em 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; border-image: initial; border-top-style: solid; border-top-color: rgba(102, 128, 153, 0.0980392); line-height: 1.6; outline: none !important;">
+    </div>
+    <div id="wmd-preview-section-2282" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h3 id="使用方法"
+            style="box-sizing: border-box; font-family: inherit; line-height: 1.6; color: inherit; margin: 1.2em 0px 0.6em; font-size: 1.7em; outline: none !important;">
+            使用方法:</h3></div>
+    <div id="wmd-preview-section-2298" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h5 id="根据规则字符串验证对象"
+            style="box-sizing: border-box; font-family: inherit; line-height: 1.6; color: inherit; margin: 1.2em 0px 0.6em; font-size: 1em; outline: none !important;">
+            根据规则字符串验证对象：</h5></div>
+    <div id="wmd-preview-section-4264" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs stylus"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">MyValidation.<span
+                class="hljs-function"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);"><span
+                class="hljs-title"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(166, 226, 46);">validation</span><span
+                class="hljs-params"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(248, 248, 242);">(ruleStringString, valueString, isStringPath)</span></span><br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <table style="box-sizing: border-box; max-width: 100%; border-collapse: collapse; border-spacing: 0px; margin-bottom: 20px; line-height: 1.6; outline: none !important;">
+            <thead style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数
+                </th>
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数描述
+                </th>
+            </tr>
+            </thead>
+            <tbody style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    ruleStringString
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    规则的字符串
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    valueString
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    要校验的字符串
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="wmd-preview-section-5897" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs stylus"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">MyValidation.<span
+                class="hljs-function"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);"><span
+                class="hljs-title"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(166, 226, 46);">validation</span><span
+                class="hljs-params"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(248, 248, 242);">(ruleStringJson, values, isStringPath)</span></span><br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <table style="box-sizing: border-box; max-width: 100%; border-collapse: collapse; border-spacing: 0px; margin-bottom: 20px; line-height: 1.6; outline: none !important;">
+            <thead style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数
+                </th>
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数描述
+                </th>
+            </tr>
+            </thead>
+            <tbody style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    ruleStringJson
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    规则的字符串的集合
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    values
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    要校验的字符串的集合
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    isStringPath
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote
+                style="box-sizing: border-box; outline: none !important; padding: 15px 20px; margin: 0px 0px 1.1em; border-left: 10px solid rgba(102, 128, 153, 0.0745098); background-color: rgba(102, 128, 153, 0.0470588); border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+            <p style="box-sizing: border-box; margin: 0px; font-size: 1em; line-height: 1.6; outline: none !important;">
+                注意：&nbsp;<br style="box-sizing: border-box; outline: none !important;"><strong
+                    style="box-sizing: border-box; line-height: 1.6; outline: none !important;">规则的字符串</strong>是校验的核心，格式是“规则1名[参数1,参数2…];规则2名[参
+                数1,参数2…]…”。&nbsp;<br style="box-sizing: border-box; outline: none !important;">如：<strong
+                    style="box-sizing: border-box; line-height: 1.6; outline: none !important;">“required;minSize[5]”</strong>表示使用<strong
+                    style="box-sizing: border-box; line-height: 1.6; outline: none !important;">required规则</strong>校验，校验非空；然后
+                使用<strong style="box-sizing: border-box; line-height: 1.6; outline: none !important;">minSize规则</strong>校验，参数是5，表示字符串长度不能小于5&nbsp;<br
+                    style="box-sizing: border-box; outline: none !important;">规则的字符串中特殊字符有“;”、“,”两个，需要转义，转义字符分别为“;;”、“;,”
+            </p></blockquote>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">如:</p>
+    </div>
+    <div id="wmd-preview-section-5786" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs nimrod"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;"><span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">var</span> <span
+                class="hljs-literal"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">result</span> = myValidation.validation(<span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"required;sizeMax[16]"</span>, <span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"test"</span>);<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">或：</p>
+    </div>
+    <div id="wmd-preview-section-5945" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs nimrod"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;"><span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">var</span> <span
+                class="hljs-literal"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">result</span> = myValidation.validation({<br
+                style="box-sizing: border-box; outline: none !important;">    <span class="hljs-string"
+                                                                                    style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"user.name"</span> : <span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"required;sizeMax[16]"</span>,<br
+                style="box-sizing: border-box; outline: none !important;">},{<br
+                style="box-sizing: border-box; outline: none !important;">     user : {<br
+                style="box-sizing: border-box; outline: none !important;">          name : <span class="hljs-string"
+                                                                                                 style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"test"</span><br
+                style="box-sizing: border-box; outline: none !important;">     }<br
+                style="box-sizing: border-box; outline: none !important;">},<span class="hljs-literal"
+                                                                                  style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">true</span>)<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">
+            返回的result是校验规则结果的数组&nbsp;<br style="box-sizing: border-box; outline: none !important;"><br
+                style="box-sizing: border-box; outline: none !important;"></p></div>
+    <div id="wmd-preview-section-5946" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h5 id="注册自定义规则"
+            style="box-sizing: border-box; font-family: inherit; line-height: 1.6; color: inherit; margin: 1.2em 0px 0.6em; font-size: 1em; outline: none !important;">
+            注册自定义规则：</h5></div>
+    <div id="wmd-preview-section-5979" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs stylus"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">myValidation.<span
+                class="hljs-function"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);"><span
+                class="hljs-title"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(166, 226, 46);">registerRule</span><span
+                class="hljs-params"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(248, 248, 242);">(name, validationFn, msg)</span></span><br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <table style="box-sizing: border-box; max-width: 100%; border-collapse: collapse; border-spacing: 0px; margin-bottom: 20px; line-height: 1.6; outline: none !important;">
+            <thead style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数
+                </th>
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数描述
+                </th>
+            </tr>
+            </thead>
+            <tbody style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    name
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    规则的名称
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    validationFn
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    校验函数
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    msg
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    默认的错误提示语句,支持字符串或函数
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">如:</p>
+    </div>
+    <div id="wmd-preview-section-5948" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs ceylon"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">myValidation.registerRule(<span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"minSize"</span>, <span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">function</span> (<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span>, <span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">object</span>, count) {<br
+                style="box-sizing: border-box; outline: none !important;">    <span class="hljs-keyword"
+                                                                                    style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">return</span> !!<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span> &amp;&amp; <span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span>.length &gt;= parseInt(count);<br
+                style="box-sizing: border-box; outline: none !important;">},<span class="hljs-keyword"
+                                                                                  style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">function</span> (<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span>, <span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">object</span>, count) {<br
+                style="box-sizing: border-box; outline: none !important;">    <span class="hljs-keyword"
+                                                                                    style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">return</span> <span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"最少输入"</span> + count + <span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"个字符数"</span>;<br
+                style="box-sizing: border-box; outline: none !important;">});<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">或：</p>
+    </div>
+    <div id="wmd-preview-section-7565" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs cs"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">myValidation.registerRule(<span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"integer"</span>, function (<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span>, <span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">object</span>) {<br
+                style="box-sizing: border-box; outline: none !important;">    <span class="hljs-keyword"
+                                                                                    style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">return</span> !!<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span> &amp;&amp; /^[-+]?\d+$/.test(<span
+                class="hljs-keyword"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">value</span>);<br
+                style="box-sizing: border-box; outline: none !important;">}, <span class="hljs-string"
+                                                                                   style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"必须是整数"</span>);<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <blockquote
+                style="box-sizing: border-box; outline: none !important; padding: 15px 20px; margin: 0px 0px 1.1em; border-left: 10px solid rgba(102, 128, 153, 0.0745098); background-color: rgba(102, 128, 153, 0.0470588); border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+            <p style="box-sizing: border-box; margin: 0px 0px 1.1em; font-size: 1em; line-height: 1.6; outline: none !important;">
+                注意：&nbsp;<br style="box-sizing: border-box; outline: none !important;">校验函数是表单校验的核心，他的参数如下：&nbsp;<br
+                    style="box-sizing: border-box; outline: none !important;">value: 要校验的值&nbsp;<br
+                    style="box-sizing: border-box; outline: none !important;">object: 校验的对象，包括校验规则原始值&nbsp;<br
+                    style="box-sizing: border-box; outline: none !important;">…pram:
+                校验的参数列表，如xx[a,b,c]，这里会解析出3个参数，分别为：“a”、“b”、“c”</p>
+            <p style="box-sizing: border-box; margin: 0px; font-size: 1em; line-height: 1.6; outline: none !important;">
+                同时校验失败的情况下必须返回false或者是调用myValidation.result生成的返回结果，否则视为校验成功。</p></blockquote>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;"><br
+                style="box-sizing: border-box; outline: none !important;"></p></div>
+    <div id="wmd-preview-section-7680" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h5 id="自定义返回错误提示"
+            style="box-sizing: border-box; font-family: inherit; line-height: 1.6; color: inherit; margin: 1.2em 0px 0.6em; font-size: 1em; outline: none !important;">
+            自定义返回错误提示：</h5>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">
+            有时候需要在验证的时候动态的生成返回错误，而不是返回默认错误，此时可以使用以下api：</p></div>
+    <div id="wmd-preview-section-8327" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs nimrod"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">myValidation.<span
+                class="hljs-literal"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">result</span> (<span
+                class="hljs-literal"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">result</span>, msg)<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <table style="box-sizing: border-box; max-width: 100%; border-collapse: collapse; border-spacing: 0px; margin-bottom: 20px; line-height: 1.6; outline: none !important;">
+            <thead style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数
+                </th>
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数描述
+                </th>
+            </tr>
+            </thead>
+            <tbody style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    result
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    boolean型，校验的结果，仅当false时候表示验证失败
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    msg
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    验证失败的字符串，提示这个字符串的优先级比默认字符串高
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p style="box-sizing: border-box; outline: none !important; margin: 0px 0px 1.1em; line-height: 1.6;">如：</p>
+    </div>
+    <div id="wmd-preview-section-8831" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <pre class="prettyprint hljs-dark"
+             style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: 0.9em; white-space: pre-wrap; padding: 0px; margin-top: 0px; margin-bottom: 1.1em; line-height: 1.6; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); background: rgb(246, 246, 246); border: 0px; border-radius: 5px; outline: none !important;"><code
+                class="hljs nimrod"
+                style="box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace; font-size: inherit; padding: 0.5em; color: rgb(248, 248, 242); background: rgb(35, 36, 31); border-radius: 0px; display: block; outline: none !important;">myValidation.registerRule(<span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"returnMsg"</span>, function () {<br
+                style="box-sizing: border-box; outline: none !important;">    <span class="hljs-keyword"
+                                                                                    style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(249, 38, 114);">return</span> myValidation.<span
+                class="hljs-literal"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">result</span>(<span
+                class="hljs-literal"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(174, 129, 255);">false</span>, <span
+                class="hljs-string"
+                style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"自定义错误提示"</span>);<br
+                style="box-sizing: border-box; outline: none !important;">}, <span class="hljs-string"
+                                                                                   style="box-sizing: border-box; outline: none !important; line-height: 1.6; color: rgb(230, 219, 116);">"此为默认提示，会被覆盖掉"</span>);<br
+                style="box-sizing: border-box; outline: none !important;"></code></pre>
+        <hr style="box-sizing: content-box; height: 0px; margin: 2em 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; border-image: initial; border-top-style: solid; border-top-color: rgba(102, 128, 153, 0.0980392); line-height: 1.6; outline: none !important;">
+    </div>
+    <div id="wmd-preview-section-10408" class="wmd-preview-section preview-content"
+         style="box-sizing: border-box; line-height: 1.6; color: rgb(44, 63, 81); font-family: &quot;Helvetica Neue&quot;, Arial, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, SimSun, Song, sans-serif; font-size: 15.1111px; outline: none !important;">
+        <h3 id="默认校验库"
+            style="box-sizing: border-box; font-family: inherit; line-height: 1.6; color: inherit; margin: 1.2em 0px 0.6em; font-size: 1.7em; outline: none !important;">
+            默认校验库:</h3>
+        <table style="box-sizing: border-box; max-width: 100%; border-collapse: collapse; border-spacing: 0px; margin-bottom: 20px; line-height: 1.6; outline: none !important;">
+            <thead style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数
+                </th>
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    参数描述
+                </th>
+                <th style="box-sizing: border-box; text-align: left; padding: 0.5em; line-height: 1.5; vertical-align: bottom; border: 1px solid rgb(221, 221, 221); outline: none !important;">
+                    例子
+                </th>
+            </tr>
+            </thead>
+            <tbody style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    required
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    必填
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    required
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    minSize
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    要求字符串长度不大于指定值
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    minSize[5]
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    maxSize
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    要求字符串长度不小于指定值
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    maxSize[5]
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    min
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    必须是数字，并要求不小于指定值
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    min[5]
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    max
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    必须是数字，并要求不大于指定值
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    max[5]
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    number
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    必须是数字
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    number
+                </td>
+            </tr>
+            <tr style="box-sizing: border-box; outline: none !important; line-height: 1.6;">
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    integer
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    必须是整数
+                </td>
+                <td style="box-sizing: border-box; outline: none !important; padding: 0.5em; line-height: 1.6; vertical-align: top; border: 1px solid rgb(221, 221, 221);">
+                    integer
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
