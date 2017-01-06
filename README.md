@@ -14,11 +14,11 @@ var myValidation = require("my-validation");
 ###使用方法:
 #####根据规则字符串验证对象：
 ```
-MyValidation.validation(ruleStringString, valueString, isStringPath)
+myValidation.validation(ruleStringString, valueString, isStringPath)
 ```
 
 |	参数	|	参数描述	|
-|:|:|
+|:---|:---|
 |	ruleStringString	|	规则的字符串	|
 |	valueString		|	要校验的字符串	|
 
@@ -26,7 +26,7 @@ MyValidation.validation(ruleStringString, valueString, isStringPath)
 MyValidation.validation(ruleStringJson, values, isStringPath)
 ```
 |	参数	|	参数描述	|
-|:|:|
+|:---|:---|
 |	ruleStringJson	|	规则的字符串的集合	|
 |	values		|	要校验的字符串的集合	|
 |	isStringPath	|		|
@@ -57,7 +57,7 @@ myValidation.registerRule(name, validationFn, msg)
 ```
 
 |	参数	|	参数描述	|
-|:|:|
+|:---|:---|
 |	name	|	规则的名称	|
 |	validationFn		|	校验函数	|
 |	msg	|	默认的错误提示语句,支持字符串或函数	|
@@ -91,7 +91,7 @@ myValidation.registerRule("integer", function (value, object) {
 myValidation.result (result, msg)
 ```
 |	参数	|	参数描述	|
-|:|:|
+|:---|:---|
 |	result	|	boolean型，校验的结果，仅当false时候表示验证失败	|
 |	msg		|	验证失败的字符串，提示这个字符串的优先级比默认字符串高	|
 如：
@@ -101,9 +101,9 @@ myValidation.registerRule("returnMsg", function () {
 }, "此为默认提示，会被覆盖掉");
 ```
 ----
-###默认校验库:
+###默认校验规则库:
 |	参数	|	参数描述	|	例子	|
-|:|:|
+|:---|:---|
 |	required	|	必填	|	required |
 |	minSize		|	要求字符串长度不大于指定值	|	minSize[5]	|
 |	maxSize		|	要求字符串长度不小于指定值	|	maxSize[5]	|
