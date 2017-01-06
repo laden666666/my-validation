@@ -29,7 +29,7 @@ MyValidation.validation(ruleStringJson, values, isStringPath)
 |:---|:---|
 |	ruleStringJson	|	规则的字符串的集合	|
 |	values		|	要校验的字符串的集合	|
-|	isStringPath	|		|
+|	isStringPath	|	是否启用类似微信小程序的子对象路径名做key	|
  >注意：
  >**规则的字符串**是校验的核心，格式是“规则1名[参数1,参数2...];规则2名[参 数1,参数2...]...”。
  >如：**“required;minSize[5]”**表示使用**required规则**校验，校验非空；然后 使用**minSize规则**校验，参数是5，表示字符串长度不能小于5
@@ -103,7 +103,7 @@ myValidation.registerRule("returnMsg", function () {
 ----
 ###默认校验规则库:
 |	参数	|	参数描述	|	例子	|
-|:---|:---|
+|:---|:---|:---|
 |	required	|	必填	|	required |
 |	minSize		|	要求字符串长度不大于指定值	|	minSize[5]	|
 |	maxSize		|	要求字符串长度不小于指定值	|	maxSize[5]	|
@@ -111,3 +111,4 @@ myValidation.registerRule("returnMsg", function () {
 |	max	|	必须是数字，并要求不大于指定值	|	max[5]	|
 |	number	|	必须是数字	|	number	|
 |	integer	|	必须是整数	|	integer	|
+目前仅提供几个笔者马上要使用的规则，其他规则大家可以自己通过myValidation.registerRule注册。
