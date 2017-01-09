@@ -524,7 +524,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var regex = new _Rule2.default("regex", function (value, object, regex, config) {
 	    return new RegExp(regex, config).test(value);
-	}, "验证错误");
+	}, "格式错误");
 
 	/**
 	 * 提供的默认的校验库
