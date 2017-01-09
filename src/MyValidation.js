@@ -6,87 +6,72 @@ import Rule from './Rule';
 import EasyResult from './EasyResult';
 import ruleLib from './RuleLib';
 
-var formValidation = new FormValidation(ruleLib);
-var MyValidation = {};
+//新注册的规则
+var newRuleLib = [];
+
+var MyValidation = function () {
+    this.$formValidation = new FormValidation(ruleLib.concat(newRuleLib));
+}
 
 //注册新规则
-MyValidation.registerRule = function (name, validation, msg) {
-    formValidation.registerRule(new Rule(name, validation, msg));
+MyValidation.prototype.registerRule = function (name, validation, msg) {
+    var newRule = new Rule(name, validation, msg);
+    this.$formValidation.registerRule(newRule);
 }
 
 /**
- *
+ * 校验规则
  * @param ruleStrings        有三种形式 1:{name: ruleString} 2.[{name:name, rule:ruleString}...] 3.字符串
  * @param values
  * @param isStringPath
  */
-MyValidation.validation = function (ruleStringJson, values, isStringPath) {
-    //ruleStringJson是字符串
-    var isString = false;
-
-    //将ruleStrings的两种形式都转为 {name: {name:name, rule:ruleString}}的形式
-    var maps = {};
-    var resultMaps = {};
-    if(Object.prototype.toString.call(ruleStringJson) === '[object Array]'){
-        //如果是数组形式
-        for (var index in ruleStringJson){
-            var item = ruleStringJson[index];
-            if(item && item.name && item.rule){
-                maps[item.name] = item;
-            }
-        }
-    } else if(typeof ruleStringJson == "string") {
-        isString = true;
-        maps['name'] = {
-            rule : ruleStringJson,
-        };
-        values = {name : values};
-    } else {
-        for (var name in ruleStringJson){
-            var ruleString = ruleStringJson[name]
-
-            if(ruleString){
-                maps[name] = {
-                    name : name,
-                    rule : ruleString,
-                };
-            }
-        }
-    }
-
-    //循环遍历,然后求出结果数组
-    for (var name in maps){
-        var value = isStringPath ? getValueByStringPath(values, name) : values[name];
-
-        resultMaps[name] = formValidation.$validation(value, maps[name], maps[name].rule);
-    }
-
-    if(isString){
-        return resultMaps["name"];
-    } else {
-        return resultMaps;
-    }
+MyValidation.prototype.validation = function (ruleStringJson, values, isStringPath) {
+    return this.$formValidation.validation(ruleStringJson, values, isStringPath);
 }
 
 //构建一个简化的返回结果
-MyValidation.result = function (result, msg) {
+MyValidation.prototype.result = function (result, msg) {
     return new EasyResult(result, msg);
 }
 
-function getValueByStringPath(json, stringPath) {
-    if(!json){
-        return "";
-    }
-
-    var temp = json, path;
-    var paths = stringPath.split(".");
-    for (path = paths.shift();path; path = paths.shift()){
-        temp = temp[path];
-        if(!temp){
-            return "";
+//分析结果,返回是一个boolean型
+MyValidation.prototype.analyseResult = function (result) {
+    if(Object.prototype.toString.call(result) === '[object Array]'){
+        return result.reduce((result, item)=>{
+            return item.result && result;
+        },true);
+    } else {
+        var array = [];
+        for(let key in result){
+            array.push(result[key]);
         }
+
+        return array.map((item)=>{
+            return this.analyseResult(item);
+        }).reduce((result, item)=>{
+            return item && result;
+        },true)
     }
-    return temp;
 }
 
-module.exports = MyValidation;
+
+
+/**
+ * 创建一个默认的MyValidation实例,并提供基于构建者模式的构建功能
+ */
+var MyValidationFactory = new MyValidation();
+
+//注册新规则
+MyValidationFactory.registerRule = function (name, validation, msg) {
+    var newRule = new Rule(name, validation, msg);
+    newRuleLib.push(newRule);
+    this.$formValidation.registerRule(newRule);
+}
+
+//构建一个新的实例
+MyValidationFactory.build = function () {
+    return new FormValidation();
+}
+
+
+module.exports = MyValidationFactory;

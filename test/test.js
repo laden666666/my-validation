@@ -202,10 +202,30 @@ describe('myValidation', function() {
         assert.equal("自定义错误!", result.returnMsg[0].failMessage)
     });
 
+    it('正则表达式', function() {
+        var result = myValidation.validation("regex[^[a-z]*$]", "test");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("regex[^[a-z]*$,i]", "TEST");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("regex[^[a-z]*$]", "TEST");
+        assert.equal(false, result[0].result)
+    });
+
     it('直接字符串验证', function() {
         var result = myValidation.validation("required", "test");
         assert.equal(true, result[0].result)
         result = myValidation.validation("required", "");
         assert.equal(false, result[0].result)
     });
+
+    it('结果分析函数', function() {
+        var result = myValidation.validation("required", "");
+        assert.equal(false, myValidation.analyseResult(result));
+
+        result = myValidation.validation({required:"required"}, {required:""});
+        assert.equal(false, myValidation.analyseResult(result));
+    });
+
+
+
 });

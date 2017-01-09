@@ -100,6 +100,27 @@ myValidation.registerRule("returnMsg", function () {
     return myValidation.result(false, "自定义错误提示");
 }, "此为默认提示，会被覆盖掉");
 ```
+<br/>
+#####分析验证结果：
+验证结果是个错误信息的数组,或者是一个key、value形式的json,但是表单验证的结果究竟是成功还是失败,我们无法马上得知。你可以通过遍历各个验证项的result字段,不断一个个相与来获得结果的boolean值,也可以直接使用我们的api函数：
+```
+myValidation.analyseResult (result)
+```
+|	参数	|	参数描述	|
+|:---|:---|
+|	result	|	validation的验证结果	|
+如：
+```
+var result = myValidation.validation({
+    "user.name" : "required;sizeMax[16]",
+},{
+     user : {
+          name : "test"
+     }
+},true);
+
+result = myValidation.analyseResult(result) //result被转为boolean型
+```
 ----
 ###默认校验规则库:
 |	参数	|	参数描述	|	例子	|
@@ -111,4 +132,5 @@ myValidation.registerRule("returnMsg", function () {
 |	max	|	必须是数字，并要求不大于指定值	|	max[5]	|
 |	number	|	必须是数字	|	number	|
 |	integer	|	必须是整数	|	integer	|
+|	regex	|	正则表达式	|	regex[^\\S{2,4}$,i]	|
 目前仅提供几个笔者马上要使用的规则，其他规则大家可以自己通过myValidation.registerRule注册。

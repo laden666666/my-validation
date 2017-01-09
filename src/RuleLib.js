@@ -20,7 +20,7 @@ var minSize = new Rule("minSize", function (value, object, count) {
  * 最多输入字符数
  */
 var maxSize = new Rule("maxSize", function (value, object, count) {
-    return !!value && value.length <= parseInt(count);
+    return value.length <= parseInt(count);
 },function (value, object, count) {
     return "最多输入" + count + "个字符数";
 });
@@ -64,9 +64,18 @@ var integer = new Rule("integer", function (value, object) {
     return !!value && /^[-+]?\d+$/.test(value);
 }, "必须是整数");
 
+/**
+ * 	验证整数
+ */
+var regex = new Rule("regex", function (value, object, regex, config) {
+    return new RegExp(regex, config).test(value);
+}, "格式错误");
+
+
+
 
 /**
  * 提供的默认的校验库
  * @constructor
  */
-export default [required,max,min,maxSize,minSize,number,integer]
+export default [required,max,min,maxSize,minSize,number,integer,regex]

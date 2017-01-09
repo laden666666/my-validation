@@ -6,10 +6,9 @@
     <script src="../dist/my-validation.js"></script>
     <script>
 
-        var result = myValidation.validation("test","required");
-
+        var result = myValidation.validation("required", "");
         //参数转义测试
-        console.log(result);
+        console.log(myValidation.analyseResult( result));
     </script>
 </head>
 <body>

@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view>
+  <form class="form" bindsubmit="formSubmit">
+    <view class="form-group">
+      <view class="form-label u-required">用户名</view>
+      <input class="form-input" value="{{user.name}}" name="user.name" />
+      <block wx:if="{{error['user.name']}}">
+        <view wx:for="{{error['user.name']}}" wx:if="{{!item.result}}" class="form-error" >{{item.failMessage}}</view>
+      </block>
+    </view>
+    <view class="form-group">
+      <view class="form-label u-required">密码</view>
+      <input type="password" class="form-input" value="{{user.password}}" name="user.password" />
+      <block wx:if="{{error['user.password']}}">
+        <view wx:for="{{error['user.password']}}" wx:if="{{!item.result}}" class="form-error" >{{item.failMessage}}</view>
+      </block>
+    </view>
+    <view class="form-group">
+      <view class="form-label u-required">邮箱</view>
+      <input class="form-input" value="{{user.email}}" name="user.email" />
+      <block wx:if="{{error['user.email']}}">
+        <view wx:for="{{error['user.email']}}" wx:if="{{!item.result}}" class="form-error" >{{item.failMessage}}</view>
+      </block>
+    </view>
+    <button class="btn" formType="submit">提交</button>
+  </form>
+</view>
