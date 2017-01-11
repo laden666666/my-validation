@@ -148,7 +148,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	//构建一个新的实例
 	MyValidationFactory.build = function () {
-	    return new _FormValidation2.default();
+	    return new _FormValidation2.default(_RuleLib2.default.concat(newRuleLib));
 	};
 
 	module.exports = MyValidationFactory;
@@ -466,8 +466,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * 最少输入字符数
 	 */
-	var minSize = new _Rule2.default("minSize", function (value, object, count) {
-	    return !!value && value.length >= parseInt(count);
+	var minSize = new _Rule2.default("minSize", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+	    var count = arguments[2];
+
+	    return value === "" || value.length >= parseInt(count);
 	}, function (value, object, count) {
 	    return "最少输入" + count + "个字符数";
 	});
@@ -475,8 +479,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * 最多输入字符数
 	 */
-	var maxSize = new _Rule2.default("maxSize", function (value, object, count) {
-	    return value.length <= parseInt(count);
+	var maxSize = new _Rule2.default("maxSize", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+	    var count = arguments[2];
+
+	    return value === "" || value.length <= parseInt(count);
 	}, function (value, object, count) {
 	    return "最多输入" + count + "个字符数";
 	});
@@ -484,8 +492,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * 	最小值
 	 */
-	var min = new _Rule2.default("min", function (value, object, number) {
-	    if (!value || !/^[-+]?\d+(\.\d+)?$/.test(value)) {
+	var min = new _Rule2.default("min", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+	    var number = arguments[2];
+
+	    if (value === "") {
+	        return true;
+	    } else if (!/^[-+]?\d+(\.\d+)?$/.test(value)) {
 	        return false;
 	    }
 	    return parseFloat(value) >= parseFloat(number);
@@ -496,8 +510,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * 	最大值
 	 */
-	var max = new _Rule2.default("max", function (value, object, number) {
-	    if (!value || !/^[-+]?\d+(\.\d+)?$/.test(value)) {
+	var max = new _Rule2.default("max", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+	    var number = arguments[2];
+
+	    if (value === "") {
+	        return true;
+	    } else if (!/^[-+]?\d+(\.\d+)?$/.test(value)) {
 	        return false;
 	    }
 	    return parseFloat(value) <= parseFloat(number);
@@ -508,22 +528,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * 	验证数字
 	 */
-	var number = new _Rule2.default("number", function (value, object) {
-	    return !!value && /^[-+]?\d+(\.\d+)?$/.test(value);
+	var number = new _Rule2.default("number", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+
+	    return value === "" || /^[-+]?\d+(\.\d+)?$/.test(value);
 	}, "必须是数字");
 
 	/**
 	 * 	验证整数
 	 */
-	var integer = new _Rule2.default("integer", function (value, object) {
-	    return !!value && /^[-+]?\d+$/.test(value);
+	var integer = new _Rule2.default("integer", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+
+	    return value === "" || /^[-+]?\d+$/.test(value);
 	}, "必须是整数");
 
 	/**
 	 * 	验证整数
 	 */
-	var regex = new _Rule2.default("regex", function (value, object, regex, config) {
-	    return new RegExp(regex, config).test(value);
+	var regex = new _Rule2.default("regex", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+	    var regex = arguments[2];
+	    var config = arguments[3];
+
+	    return value === "" || new RegExp(regex, config).test(value);
 	}, "格式错误");
 
 	/**

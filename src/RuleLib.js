@@ -10,8 +10,8 @@ var required = new Rule("required", function (value) {
 /**
  * 最少输入字符数
  */
-var minSize = new Rule("minSize", function (value, object, count) {
-    return !!value && value.length >= parseInt(count);
+var minSize = new Rule("minSize", function (value = "", object, count) {
+    return value === "" || value.length >= parseInt(count);
 },function (value, object, count) {
     return "最少输入" + count + "个字符数";
 });
@@ -19,8 +19,8 @@ var minSize = new Rule("minSize", function (value, object, count) {
 /**
  * 最多输入字符数
  */
-var maxSize = new Rule("maxSize", function (value, object, count) {
-    return value.length <= parseInt(count);
+var maxSize = new Rule("maxSize", function (value = "", object, count) {
+    return value === "" || value.length <= parseInt(count);
 },function (value, object, count) {
     return "最多输入" + count + "个字符数";
 });
@@ -28,8 +28,10 @@ var maxSize = new Rule("maxSize", function (value, object, count) {
 /**
  * 	最小值
  */
-var min = new Rule("min", function (value, object, number) {
-    if(!value || !/^[-+]?\d+(\.\d+)?$/.test(value)){
+var min = new Rule("min", function (value = "", object, number) {
+    if(value === ""){
+        return true;
+    } else if(!/^[-+]?\d+(\.\d+)?$/.test(value)){
         return false
     }
     return parseFloat(value) >= parseFloat(number);
@@ -41,8 +43,10 @@ var min = new Rule("min", function (value, object, number) {
 /**
  * 	最大值
  */
-var max = new Rule("max", function (value, object, number) {
-    if(!value || !/^[-+]?\d+(\.\d+)?$/.test(value)){
+var max = new Rule("max", function (value = "", object, number) {
+    if(value === ""){
+        return true;
+    } else if(!/^[-+]?\d+(\.\d+)?$/.test(value)){
         return false
     }
     return parseFloat(value) <= parseFloat(number);
@@ -53,22 +57,22 @@ var max = new Rule("max", function (value, object, number) {
 /**
  * 	验证数字
  */
-var number = new Rule("number", function (value, object) {
-    return !!value && /^[-+]?\d+(\.\d+)?$/.test(value);
+var number = new Rule("number", function (value = "", object) {
+    return value === "" || /^[-+]?\d+(\.\d+)?$/.test(value);
 }, "必须是数字");
 
 /**
  * 	验证整数
  */
-var integer = new Rule("integer", function (value, object) {
-    return !!value && /^[-+]?\d+$/.test(value);
+var integer = new Rule("integer", function (value = "", object) {
+    return value === "" || /^[-+]?\d+$/.test(value);
 }, "必须是整数");
 
 /**
  * 	验证整数
  */
-var regex = new Rule("regex", function (value, object, regex, config) {
-    return new RegExp(regex, config).test(value);
+var regex = new Rule("regex", function (value = "", object, regex, config) {
+    return value === "" || new RegExp(regex, config).test(value);
 }, "格式错误");
 
 

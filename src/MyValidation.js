@@ -70,7 +70,7 @@ MyValidationFactory.registerRule = function (name, validation, msg) {
 
 //构建一个新的实例
 MyValidationFactory.build = function () {
-    return new FormValidation();
+    return new FormValidation(ruleLib.concat(newRuleLib));
 }
 
 

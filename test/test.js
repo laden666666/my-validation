@@ -226,6 +226,19 @@ describe('myValidation', function() {
         assert.equal(false, myValidation.analyseResult(result));
     });
 
+    it('验证数组规则', function() {
+        var result = myValidation.validation([{
+            name: "required",
+            rule: "required"
+        }],{"required":"test"});
+        assert.equal(true, myValidation.analyseResult(result))
+        result = myValidation.validation([{
+            name: "required",
+            rule: "required"
+        }],{"required":""});
+        assert.equal(false, myValidation.analyseResult(result))
+    });
+
 
 
 });
