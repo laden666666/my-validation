@@ -133,4 +133,7 @@ result = myValidation.analyseResult(result) //result被转为boolean型
 |	number	|	必须是数字	|	number	|
 |	integer	|	必须是整数	|	integer	|
 |	regex	|	正则表达式	|	regex[^\\S{2,4}$,i]	|
+|	phone	|	电话	|	phone	|
+|	mobilePhone	|	手机	|	mobilePhone	|
+|	mobileOrPhone	|	电话或手机	|	mobileOrPhone	|
 目前仅提供几个笔者马上要使用的规则，其他规则大家可以自己通过myValidation.registerRule注册。

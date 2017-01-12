@@ -1,5 +1,11 @@
 import Rule from './Rule';
 
+//几种常用正则
+var phoneRegex = /((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/;
+var mobileRegex = /^1\d{10}$/;
+var numberRegex = /^[-+]?\d+(\.\d+)?$/;
+var integerRegex = /^[-+]?\d+$/;
+
 /**
  * 必填规则
  */
@@ -31,7 +37,7 @@ var maxSize = new Rule("maxSize", function (value = "", object, count) {
 var min = new Rule("min", function (value = "", object, number) {
     if(value === ""){
         return true;
-    } else if(!/^[-+]?\d+(\.\d+)?$/.test(value)){
+    } else if(!numberRegex.test(value)){
         return false
     }
     return parseFloat(value) >= parseFloat(number);
@@ -46,7 +52,7 @@ var min = new Rule("min", function (value = "", object, number) {
 var max = new Rule("max", function (value = "", object, number) {
     if(value === ""){
         return true;
-    } else if(!/^[-+]?\d+(\.\d+)?$/.test(value)){
+    } else if(!numberRegex.test(value)){
         return false
     }
     return parseFloat(value) <= parseFloat(number);
@@ -58,14 +64,14 @@ var max = new Rule("max", function (value = "", object, number) {
  * 	验证数字
  */
 var number = new Rule("number", function (value = "", object) {
-    return value === "" || /^[-+]?\d+(\.\d+)?$/.test(value);
+    return value === "" || numberRegex.test(value);
 }, "必须是数字");
 
 /**
  * 	验证整数
  */
 var integer = new Rule("integer", function (value = "", object) {
-    return value === "" || /^[-+]?\d+$/.test(value);
+    return value === "" || integerRegex.test(value);
 }, "必须是整数");
 
 /**
@@ -75,6 +81,27 @@ var regex = new Rule("regex", function (value = "", object, regex, config) {
     return value === "" || new RegExp(regex, config).test(value);
 }, "格式错误");
 
+/**
+ * 	手机校验或电话
+ */
+var mobileOrPhone = new Rule("mobileOrPhone", function (value = "", object) {
+    return value === "" || phoneRegex.test(value) || mobileRegex.test(value);
+}, "电话号码或者手机号格式错误");
+
+/**
+ * 	电话校验
+ */
+var phone = new Rule("phone", function (value = "", object) {
+    return value === "" || phoneRegex.test(value);
+}, "电话号码格式错误");
+
+/**
+ * 	手机校验
+ */
+var mobilePhone = new Rule("mobilePhone", function (value = "", object) {
+    return value === "" || mobileRegex.test(value);
+}, "手机号格式错误");
+
 
 
 
@@ -82,4 +109,4 @@ var regex = new Rule("regex", function (value = "", object, regex, config) {
  * 提供的默认的校验库
  * @constructor
  */
-export default [required,max,min,maxSize,minSize,number,integer,regex]
+export default [required,max,min,maxSize,minSize,number,integer,regex,mobileOrPhone,phone,mobilePhone]

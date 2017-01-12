@@ -456,6 +456,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//几种常用正则
+	var phoneRegex = /((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/;
+	var mobileRegex = /^1\d{10}$/;
+	var numberRegex = /^[-+]?\d+(\.\d+)?$/;
+	var integerRegex = /^[-+]?\d+$/;
+
 	/**
 	 * 必填规则
 	 */
@@ -499,7 +505,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (value === "") {
 	        return true;
-	    } else if (!/^[-+]?\d+(\.\d+)?$/.test(value)) {
+	    } else if (!numberRegex.test(value)) {
 	        return false;
 	    }
 	    return parseFloat(value) >= parseFloat(number);
@@ -517,7 +523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (value === "") {
 	        return true;
-	    } else if (!/^[-+]?\d+(\.\d+)?$/.test(value)) {
+	    } else if (!numberRegex.test(value)) {
 	        return false;
 	    }
 	    return parseFloat(value) <= parseFloat(number);
@@ -532,7 +538,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || /^[-+]?\d+(\.\d+)?$/.test(value);
+	    return value === "" || numberRegex.test(value);
 	}, "必须是数字");
 
 	/**
@@ -542,7 +548,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || /^[-+]?\d+$/.test(value);
+	    return value === "" || integerRegex.test(value);
 	}, "必须是整数");
 
 	/**
@@ -558,10 +564,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	}, "格式错误");
 
 	/**
+	 * 	手机校验或电话
+	 */
+	var mobileOrPhone = new _Rule2.default("mobileOrPhone", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+
+	    return value === "" || phoneRegex.test(value) || mobileRegex.test(value);
+	}, "电话号码或者手机号格式错误");
+
+	/**
+	 * 	电话校验
+	 */
+	var phone = new _Rule2.default("phone", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+
+	    return value === "" || phoneRegex.test(value);
+	}, "电话号码格式错误");
+
+	/**
+	 * 	手机校验
+	 */
+	var mobilePhone = new _Rule2.default("mobilePhone", function () {
+	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	    var object = arguments[1];
+
+	    return value === "" || mobileRegex.test(value);
+	}, "手机号格式错误");
+
+	/**
 	 * 提供的默认的校验库
 	 * @constructor
 	 */
-	exports.default = [required, max, min, maxSize, minSize, number, integer, regex];
+	exports.default = [required, max, min, maxSize, minSize, number, integer, regex, mobileOrPhone, phone, mobilePhone];
 
 /***/ }
 /******/ ])

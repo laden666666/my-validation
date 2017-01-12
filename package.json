@@ -1,6 +1,6 @@
 {
   "name": "my-validation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "一个验证库，可用于任意表单的验证逻辑。支持异步验证和自定义验证",
   "main": "dist/my-validation.js",
   "scripts": {

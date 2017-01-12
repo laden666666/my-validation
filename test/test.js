@@ -211,6 +211,32 @@ describe('myValidation', function() {
         assert.equal(false, result[0].result)
     });
 
+    it('电话号码', function() {
+        var result = myValidation.validation("phone", "8342345");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("phone", "83423451");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("phone", "834234519");
+        assert.equal(false, result[0].result)
+        result = myValidation.validation("phone", "010-83424519");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("phone", "0109-83424519");
+        assert.equal(true, result[0].result)
+    });
+
+    it('手机号', function() {
+        var result = myValidation.validation("mobilePhone", "13834344545");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("mobilePhone", "23834344545");
+        assert.equal(false, result[0].result)
+        result = myValidation.validation("mobilePhone", "138343445453");
+        assert.equal(false, result[0].result)
+        result = myValidation.validation("mobilePhone", "1383434454");
+        assert.equal(false, result[0].result)
+        result = myValidation.validation("mobilePhone", "1383434454A");
+        assert.equal(false, result[0].result)
+    });
+
     it('直接字符串验证', function() {
         var result = myValidation.validation("required", "test");
         assert.equal(true, result[0].result)
