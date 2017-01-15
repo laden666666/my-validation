@@ -50,13 +50,22 @@ describe('myValidation', function() {
         var result = myValidation.validation({
             required1 : "required",
             required2 : "required",
+            required3 : "required[0,1]",
+            required4 : "required[0,1]",
+            required5 : "required[0,1]",
         },{
             required1: "",
             required2: "true",
+            required3: "0",
+            required4: "1",
+            required5: "2",
         })
         //参数转义测试
         assert.equal(false, result.required1[0].result)
         assert.equal(true, result.required2[0].result);
+        assert.equal(false, result.required3[0].result);
+        assert.equal(false, result.required4[0].result);
+        assert.equal(true, result.required5[0].result);
     });
 
     it('字符串长度小于于校验', function() {

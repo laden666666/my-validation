@@ -9,8 +9,8 @@ var integerRegex = /^[-+]?\d+$/;
 /**
  * 必填规则
  */
-var required = new Rule("required", function (value) {
-    return !!value;
+var required = new Rule("required", function (value, object, ...fitlers) {
+    return !!value && fitlers.filter((item)=>item + "" === value).length == 0;
 },"必须填写");
 
 /**

@@ -465,8 +465,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * 必填规则
 	 */
-	var required = new _Rule2.default("required", function (value) {
-	    return !!value;
+	var required = new _Rule2.default("required", function (value, object) {
+	    for (var _len = arguments.length, fitlers = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	        fitlers[_key - 2] = arguments[_key];
+	    }
+
+	    return !!value && fitlers.filter(function (item) {
+	        return item + "" === value;
+	    }).length == 0;
 	}, "必须填写");
 
 	/**
