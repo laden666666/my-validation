@@ -59,10 +59,10 @@ FormValidation.prototype.$validation = function (value, object, ruleString) {
     var ruleStrings = ruleString.split(";");
 
     var ruleResults = [];
-    for(var ruleStringItem of ruleStrings) {
+    for(var ruleStringItem in ruleStrings) {
         //取出规则名
         var getRegex = /^(\w+)\[(\S+)\]$|^(\w+)$/;
-        var results = getRegex.exec(ruleStringItem);
+        var results = getRegex.exec(ruleStrings[ruleStringItem]);
         var ruleName = results[1] || results[0];
 
         //参数列表
@@ -155,6 +155,27 @@ function getValueByStringPath(json, stringPath) {
 
     var temp = json, path;
     var paths = stringPath.split(".");
+    for (path = paths.shift();path; path = paths.shift()){
+        temp = temp[path];
+        if(!temp){
+            return "";
+        }
+    }
+    return temp;
+}
+
+function getValueByStringPath2(json, stringPath) {
+    if(!json){
+        return "";
+    }
+
+    var temp = json, path;
+    var paths = [];
+    if(stringPath.indexOf("[") > -1){
+        let _stringPath = stringPath.substr(stringPath.indexOf("["), stringPath.length-1).split("[");
+        _stringPath.substr(1, _stringPath.length - 2);
+        paths = _stringPath.splice("][")
+    }
     for (path = paths.shift();path; path = paths.shift()){
         temp = temp[path];
         if(!temp){

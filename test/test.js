@@ -53,12 +53,16 @@ describe('myValidation', function() {
             required3 : "required[0,1]",
             required4 : "required[0,1]",
             required5 : "required[0,1]",
+            required6 : "required[0,1]",
+            required7 : "required[,1]",
         },{
             required1: "",
             required2: "true",
             required3: "0",
             required4: "1",
             required5: "2",
+            required6: 1,
+            required7: "",
         })
         //参数转义测试
         assert.equal(false, result.required1[0].result)
@@ -66,6 +70,8 @@ describe('myValidation', function() {
         assert.equal(false, result.required3[0].result);
         assert.equal(false, result.required4[0].result);
         assert.equal(true, result.required5[0].result);
+        assert.equal(false, result.required6[0].result);
+        assert.equal(false, result.required7[0].result);
     });
 
     it('字符串长度小于于校验', function() {
@@ -182,6 +188,24 @@ describe('myValidation', function() {
         assert.equal(true, result.integer6[0].result);
         assert.equal(false, result.integer7[0].result)
         assert.equal(false, result.integer8[0].result);
+    });
+
+    it('自定义value非字符串情况', function() {
+        myValidation.registerRule('imageCount', function (value, name, count) {
+            count = count || 0;
+            return value.length >= parseInt(count);
+        }, function (value, name, count) {
+            return "图片必须大于" + count + "张";
+        })
+
+        var result = myValidation.validation({
+            "imageCount" : "imageCount[2]",
+
+        },{
+            imageCount : ['1']
+        })
+        //自动路径匹配测试
+        assert.equal(false, result["imageCount"][0].result)
     });
 
     it('自动路径匹配测试', function() {

@@ -238,52 +238,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var ruleStrings = ruleString.split(";");
 
 	    var ruleResults = [];
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
+	    for (var ruleStringItem in ruleStrings) {
+	        //取出规则名
+	        var getRegex = /^(\w+)\[(\S+)\]$|^(\w+)$/;
+	        var results = getRegex.exec(ruleStrings[ruleStringItem]);
+	        var ruleName = results[1] || results[0];
 
-	    try {
-	        for (var _iterator = ruleStrings[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	            var ruleStringItem = _step.value;
+	        //参数列表
+	        var parameter = results[2] ? results[2].split(",") : [];
+	        //将已经转义的字符串转义回来
+	        parameter = parameter.map(function (str) {
+	            return str.replace(new RegExp(comma, "g"), ",").replace(new RegExp(semicolon, "g"), ";");
+	        });
 
-	            //取出规则名
-	            var getRegex = /^(\w+)\[(\S+)\]$|^(\w+)$/;
-	            var results = getRegex.exec(ruleStringItem);
-	            var ruleName = results[1] || results[0];
+	        //如果注册了此规则,用注册的规则校验此value
+	        var rule = this.rules[ruleName];
+	        if (rule && typeof rule.validation == 'function') {
+	            var result = rule.validation.apply(rule, [value, object].concat(_toConsumableArray(parameter)));
 
-	            //参数列表
-	            var parameter = results[2] ? results[2].split(",") : [];
-	            //将已经转义的字符串转义回来
-	            parameter = parameter.map(function (str) {
-	                return str.replace(new RegExp(comma, "g"), ",").replace(new RegExp(semicolon, "g"), ";");
-	            });
-
-	            //如果注册了此规则,用注册的规则校验此value
-	            var rule = this.rules[ruleName];
-	            if (rule && typeof rule.validation == 'function') {
-	                var result = rule.validation.apply(rule, [value, object].concat(_toConsumableArray(parameter)));
-
-	                //如果result是EasyResul,转为RuleResult返回
-	                if (result instanceof _EasyResult2.default) {
-	                    ruleResults.push(new _RuleResult2.default(value, object, result.result, result.failMessage));
-	                } else if (result === true) {
-	                    ruleResults.push(new _RuleResult2.default(value, object, true, ''));
-	                } else {
-	                    ruleResults.push(new _RuleResult2.default(value, object, false, typeof rule.msg == "function" ? rule.msg.apply(rule, [value, object].concat(_toConsumableArray(parameter))) : rule.msg));
-	                }
-	            }
-	        }
-	    } catch (err) {
-	        _didIteratorError = true;
-	        _iteratorError = err;
-	    } finally {
-	        try {
-	            if (!_iteratorNormalCompletion && _iterator.return) {
-	                _iterator.return();
-	            }
-	        } finally {
-	            if (_didIteratorError) {
-	                throw _iteratorError;
+	            //如果result是EasyResul,转为RuleResult返回
+	            if (result instanceof _EasyResult2.default) {
+	                ruleResults.push(new _RuleResult2.default(value, object, result.result, result.failMessage));
+	            } else if (result === true) {
+	                ruleResults.push(new _RuleResult2.default(value, object, true, ''));
+	            } else {
+	                ruleResults.push(new _RuleResult2.default(value, object, false, typeof rule.msg == "function" ? rule.msg.apply(rule, [value, object].concat(_toConsumableArray(parameter))) : rule.msg));
 	            }
 	        }
 	    }
@@ -353,6 +332,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var temp = json,
 	        path;
 	    var paths = stringPath.split(".");
+	    for (path = paths.shift(); path; path = paths.shift()) {
+	        temp = temp[path];
+	        if (!temp) {
+	            return "";
+	        }
+	    }
+	    return temp;
+	}
+
+	function getValueByStringPath2(json, stringPath) {
+	    if (!json) {
+	        return "";
+	    }
+
+	    var temp = json,
+	        path;
+	    var paths = [];
+	    if (stringPath.indexOf("[") > -1) {
+	        var _stringPath = stringPath.substr(stringPath.indexOf("["), stringPath.length - 1).split("[");
+	        _stringPath.substr(1, _stringPath.length - 2);
+	        paths = _stringPath.splice("][");
+	    }
 	    for (path = paths.shift(); path; path = paths.shift()) {
 	        temp = temp[path];
 	        if (!temp) {
@@ -471,7 +472,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    return !!value && fitlers.filter(function (item) {
-	        return item + "" === value;
+	        return item == value + "";
 	    }).length == 0;
 	}, "必须填写");
 
