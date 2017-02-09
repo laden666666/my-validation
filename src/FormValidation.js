@@ -148,6 +148,8 @@ FormValidation.prototype.validation = function (ruleStringJson, values, isString
     }
 }
 
+// 支持.和[]形式的取值,如从{a:{b:[1]}}中通过"a.b[0]"这样的路径字符串取出值1
+// 支持.和[]形式的取值,如从{a:{b:[1]}}中通过"a.b[0]"这样的路径字符串取出值1
 function getValueByStringPath(json, stringPath) {
     if(!json){
         return "";
@@ -156,30 +158,29 @@ function getValueByStringPath(json, stringPath) {
     var temp = json, path;
     var paths = stringPath.split(".");
     for (path = paths.shift();path; path = paths.shift()){
-        temp = temp[path];
-        if(!temp){
-            return "";
-        }
-    }
-    return temp;
-}
 
-function getValueByStringPath2(json, stringPath) {
-    if(!json){
-        return "";
-    }
+        if(path.indexOf("[") > -1){
+            var _path = path.split("[")[0];
+            var _paths = path.substr(path.indexOf("[") + 1, path.length-1).replace(/\]/g,'').split("[");
 
-    var temp = json, path;
-    var paths = [];
-    if(stringPath.indexOf("[") > -1){
-        let _stringPath = stringPath.substr(stringPath.indexOf("["), stringPath.length-1).split("[");
-        _stringPath.substr(1, _stringPath.length - 2);
-        paths = _stringPath.splice("][")
-    }
-    for (path = paths.shift();path; path = paths.shift()){
-        temp = temp[path];
-        if(!temp){
-            return "";
+
+            temp = temp[_path];
+            if(temp == null){
+                return "";
+            }
+
+
+            for (_path = _paths.shift();_path; _path = _paths.shift()){
+                temp = temp[_path];
+                if(temp == null){
+                    return "";
+                }
+            }
+        } else {
+            temp = temp[path];
+            if(temp == null){
+                return "";
+            }
         }
     }
     return temp;
