@@ -482,7 +482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var object = arguments[1];
 	    var count = arguments[2];
 
-	    return value === "" || value.length >= parseInt(count);
+	    return value == null || value == "" || value.length >= parseInt(count);
 	}, function (value, object, count) {
 	    return "最少输入" + count + "个字符数";
 	});
@@ -495,7 +495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var object = arguments[1];
 	    var count = arguments[2];
 
-	    return value === "" || value.length <= parseInt(count);
+	    return value == null || value === "" || value.length <= parseInt(count);
 	}, function (value, object, count) {
 	    return "最多输入" + count + "个字符数";
 	});
@@ -508,7 +508,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var object = arguments[1];
 	    var number = arguments[2];
 
-	    if (value === "") {
+	    if (value == null || value === "") {
 	        return true;
 	    } else if (!numberRegex.test(value)) {
 	        return false;
@@ -526,7 +526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var object = arguments[1];
 	    var number = arguments[2];
 
-	    if (value === "") {
+	    if (value == null || value === "") {
 	        return true;
 	    } else if (!numberRegex.test(value)) {
 	        return false;
@@ -543,7 +543,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || numberRegex.test(value);
+	    return value == null || value === "" || numberRegex.test(value);
 	}, "必须是数字");
 
 	/**
@@ -553,7 +553,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || integerRegex.test(value);
+	    return value == null || value === "" || integerRegex.test(value);
 	}, "必须是整数");
 
 	/**
@@ -565,7 +565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var regex = arguments[2];
 	    var config = arguments[3];
 
-	    return value === "" || new RegExp(regex, config).test(value);
+	    return value == null || value === "" || new RegExp(regex, config).test(value);
 	}, "格式错误");
 
 	/**
@@ -575,7 +575,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || phoneRegex.test(value) || mobileRegex.test(value);
+	    return value == null || value === "" || phoneRegex.test(value) || mobileRegex.test(value);
 	}, "电话号码或者手机号格式错误");
 
 	/**
@@ -585,7 +585,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || phoneRegex.test(value);
+	    return value == null || value === "" || phoneRegex.test(value);
 	}, "电话号码格式错误");
 
 	/**
@@ -595,7 +595,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
 	    var object = arguments[1];
 
-	    return value === "" || mobileRegex.test(value);
+	    return value == null || value === "" || mobileRegex.test(value);
 	}, "手机号格式错误");
 
 	/**

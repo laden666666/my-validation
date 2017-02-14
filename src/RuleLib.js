@@ -17,7 +17,7 @@ var required = new Rule("required", function (value, object, ...fitlers) {
  * 最少输入字符数
  */
 var minSize = new Rule("minSize", function (value = "", object, count) {
-    return value === "" || value.length >= parseInt(count);
+    return value == null || value == "" || value.length >= parseInt(count);
 },function (value, object, count) {
     return "最少输入" + count + "个字符数";
 });
@@ -26,7 +26,7 @@ var minSize = new Rule("minSize", function (value = "", object, count) {
  * 最多输入字符数
  */
 var maxSize = new Rule("maxSize", function (value = "", object, count) {
-    return value === "" || value.length <= parseInt(count);
+    return value == null || value === "" || value.length <= parseInt(count);
 },function (value, object, count) {
     return "最多输入" + count + "个字符数";
 });
@@ -35,7 +35,7 @@ var maxSize = new Rule("maxSize", function (value = "", object, count) {
  * 	最小值
  */
 var min = new Rule("min", function (value = "", object, number) {
-    if(value === ""){
+    if(value == null || value === ""){
         return true;
     } else if(!numberRegex.test(value)){
         return false
@@ -50,7 +50,7 @@ var min = new Rule("min", function (value = "", object, number) {
  * 	最大值
  */
 var max = new Rule("max", function (value = "", object, number) {
-    if(value === ""){
+    if(value == null || value === ""){
         return true;
     } else if(!numberRegex.test(value)){
         return false
@@ -64,42 +64,42 @@ var max = new Rule("max", function (value = "", object, number) {
  * 	验证数字
  */
 var number = new Rule("number", function (value = "", object) {
-    return value === "" || numberRegex.test(value);
+    return value == null || value === "" || numberRegex.test(value);
 }, "必须是数字");
 
 /**
  * 	验证整数
  */
 var integer = new Rule("integer", function (value = "", object) {
-    return value === "" || integerRegex.test(value);
+    return value == null || value === "" || integerRegex.test(value);
 }, "必须是整数");
 
 /**
  * 	验证整数
  */
 var regex = new Rule("regex", function (value = "", object, regex, config) {
-    return value === "" || new RegExp(regex, config).test(value);
+    return value == null || value === "" || new RegExp(regex, config).test(value);
 }, "格式错误");
 
 /**
  * 	手机校验或电话
  */
 var mobileOrPhone = new Rule("mobileOrPhone", function (value = "", object) {
-    return value === "" || phoneRegex.test(value) || mobileRegex.test(value);
+    return value == null || value === "" || phoneRegex.test(value) || mobileRegex.test(value);
 }, "电话号码或者手机号格式错误");
 
 /**
  * 	电话校验
  */
 var phone = new Rule("phone", function (value = "", object) {
-    return value === "" || phoneRegex.test(value);
+    return value == null || value === "" || phoneRegex.test(value);
 }, "电话号码格式错误");
 
 /**
  * 	手机校验
  */
 var mobilePhone = new Rule("mobilePhone", function (value = "", object) {
-    return value === "" || mobileRegex.test(value);
+    return value == null || value === "" || mobileRegex.test(value);
 }, "手机号格式错误");
 
 

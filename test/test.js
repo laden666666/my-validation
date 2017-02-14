@@ -55,6 +55,8 @@ describe('myValidation', function() {
             required5 : "required[0,1]",
             required6 : "required[0,1]",
             required7 : "required[,1]",
+            required8 : "required",
+            required9 : "required",
         },{
             required1: "",
             required2: "true",
@@ -63,6 +65,8 @@ describe('myValidation', function() {
             required5: "2",
             required6: 1,
             required7: "",
+            required8: null,
+            required9: undefined,
         })
         //参数转义测试
         assert.equal(false, result.required1[0].result)
@@ -72,6 +76,8 @@ describe('myValidation', function() {
         assert.equal(true, result.required5[0].result);
         assert.equal(false, result.required6[0].result);
         assert.equal(false, result.required7[0].result);
+        assert.equal(false, result.required8[0].result);
+        assert.equal(false, result.required9[0].result);
     });
 
     it('字符串长度小于于校验', function() {
@@ -79,15 +85,21 @@ describe('myValidation', function() {
             minSize1 : "minSize[5]",
             minSize2 : "minSize[5]",
             minSize3 : "minSize[5]",
+            minSize4 : "minSize[5]",
+            minSize5 : "minSize[5]",
         },{
             minSize1: "1234",
             minSize2: "12345",
             minSize3: "123456",
+            minSize4: null,
+            minSize5: undefined,
         })
         //字符串长度小于于校验
         assert.equal(false, result.minSize1[0].result)
         assert.equal(true, result.minSize2[0].result);
         assert.equal(true, result.minSize3[0].result);
+        assert.equal(true, result.minSize4[0].result);
+        assert.equal(true, result.minSize5[0].result);
     });
 
     it('字符串长度大于校验', function() {
@@ -95,15 +107,21 @@ describe('myValidation', function() {
             maxSize1 : "maxSize[5]",
             maxSize2 : "maxSize[5]",
             maxSize3 : "maxSize[5]",
+            maxSize4 : "maxSize[5]",
+            maxSize5 : "maxSize[5]",
         },{
             maxSize1: "1234",
             maxSize2: "12345",
             maxSize3: "123456",
+            maxSize4: null,
+            maxSize5: undefined,
         })
         //字符串长度大于校验
         assert.equal(true, result.maxSize1[0].result)
         assert.equal(true, result.maxSize2[0].result);
         assert.equal(false, result.maxSize3[0].result);
+        assert.equal(true, result.maxSize4[0].result);
+        assert.equal(true, result.maxSize5[0].result);
     });
 
     it('校验数字不大于', function() {
@@ -113,12 +131,16 @@ describe('myValidation', function() {
             max3 : "max[5]",
             max4 : "max[5]",
             max5 : "max[5]",
+            max6 : "max[5]",
+            max7 : "max[5]",
         },{
             max1: "4",
             max2: "5",
             max3: "6",
             max4: "notNumber",
             max5: "5notNumber",
+            max6: null,
+            max7: undefined,
         })
         //校验数字不大于
         assert.equal(true, result.max1[0].result)
@@ -126,6 +148,8 @@ describe('myValidation', function() {
         assert.equal(false, result.max3[0].result);
         assert.equal(false, result.max4[0].result)
         assert.equal(false, result.max5[0].result);
+        assert.equal(true, result.max6[0].result);
+        assert.equal(true, result.max7[0].result);
     });
 
     it('数字校验', function() {
@@ -138,6 +162,8 @@ describe('myValidation', function() {
             number6 : "number",
             number7 : "number",
             number8 : "number",
+            number9 : "number",
+            number10: "number",
         },{
             number1 : "0",
             number2 : "-1",
@@ -147,6 +173,8 @@ describe('myValidation', function() {
             number6 : "01",
             number7 : "01x",
             number8 : "x01",
+            number9: null,
+            number10: undefined,
         })
         //数字校验
         assert.equal(true, result.number1[0].result)
@@ -157,6 +185,8 @@ describe('myValidation', function() {
         assert.equal(true, result.number6[0].result);
         assert.equal(false, result.number7[0].result);
         assert.equal(false, result.number8[0].result);
+        assert.equal(true, result.number9[0].result);
+        assert.equal(true, result.number10[0].result);
     });
 
     it('整数校验', function() {
@@ -169,6 +199,8 @@ describe('myValidation', function() {
             integer6 : "integer",
             integer7 : "integer",
             integer8 : "integer",
+            integer9 : "integer",
+            integer10 : "integer",
         },{
             integer1 : "0",
             integer2 : "-1",
@@ -178,6 +210,8 @@ describe('myValidation', function() {
             integer6 : "01",
             integer7 : "01x",
             integer8 : "x01",
+            integer9: null,
+            integer10: undefined,
         })
         //整数校验
         assert.equal(true, result.integer1[0].result)
@@ -188,6 +222,8 @@ describe('myValidation', function() {
         assert.equal(true, result.integer6[0].result);
         assert.equal(false, result.integer7[0].result)
         assert.equal(false, result.integer8[0].result);
+        assert.equal(true, result.integer9[0].result);
+        assert.equal(true, result.integer10[0].result);
     });
 
     it('自定义value非字符串情况', function() {
@@ -242,6 +278,10 @@ describe('myValidation', function() {
         assert.equal(true, result[0].result)
         result = myValidation.validation("regex[^[a-z]*$]", "TEST");
         assert.equal(false, result[0].result)
+        result = myValidation.validation("regex[^[a-z]*$]", null);
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("regex[^[a-z]*$]", undefined);
+        assert.equal(true, result[0].result)
     });
 
     it('电话号码', function() {
@@ -254,6 +294,10 @@ describe('myValidation', function() {
         result = myValidation.validation("phone", "010-83424519");
         assert.equal(true, result[0].result)
         result = myValidation.validation("phone", "0109-83424519");
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("phone", null);
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("phone", undefined);
         assert.equal(true, result[0].result)
     });
 
@@ -268,6 +312,10 @@ describe('myValidation', function() {
         assert.equal(false, result[0].result)
         result = myValidation.validation("mobilePhone", "1383434454A");
         assert.equal(false, result[0].result)
+        result = myValidation.validation("mobilePhone", null);
+        assert.equal(true, result[0].result)
+        result = myValidation.validation("mobilePhone", undefined);
+        assert.equal(true, result[0].result)
     });
 
     it('直接字符串验证', function() {
