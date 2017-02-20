@@ -23,7 +23,7 @@ MyValidation.prototype.registerRule = function (name, validation, msg) {
  * 校验规则
  * @param ruleStrings        有三种形式 1:{name: ruleString} 2.[{name:name, rule:ruleString}...] 3.字符串
  * @param values
- * @param isStringPath
+ * @param isStringPath       是否启用类似lodash的_.property函数形式的路径检索
  */
 MyValidation.prototype.validation = function (ruleStringJson, values, isStringPath) {
     return this.$formValidation.validation(ruleStringJson, values, isStringPath);
