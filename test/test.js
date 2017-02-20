@@ -323,6 +323,10 @@ describe('myValidation', function() {
         assert.equal(true, result[0].result)
         result = myValidation.validation("required", "");
         assert.equal(false, result[0].result)
+        var result = myValidation.validation("required;mobilePhone", "");
+        assert.equal(false, myValidation.analyseResult(result))
+        var result = myValidation.validation("required;mobilePhone", "12324");
+        assert.equal(false, myValidation.analyseResult(result))
     });
 
     it('结果分析函数', function() {
