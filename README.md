@@ -1,6 +1,6 @@
 # my-validation
 一个验证库，可用于任意表单的验证的逻辑部分的实现,没有页面、控件、dom操作，仅是逻辑部分。因为没有页面相关部分，所以可以做react native、weex、微信小程序等各个平台的表单验证控件的中逻辑部分的实现，方便配合模板完成复杂的表单验证
-###安装方法:
+### 安装方法:
 webpack中使用:
 ```
 npm install git://github.com/laden666666/my-validation --save
@@ -11,8 +11,8 @@ var myValidation = require("my-validation");
 ```
 如果是web环境直接script标签引用my-validation.js或者my-validation.min.js文件即可。
  ---
-###使用方法:
-#####根据规则字符串验证对象：
+### 使用方法:
+##### 根据规则字符串验证对象：
 ```
 myValidation.validation(ruleStringString, valueString, isStringPath)
 ```
@@ -51,7 +51,7 @@ var result = myValidation.validation({
 ```
 返回的result是校验规则结果的数组
 <br/>
-#####注册自定义规则：
+##### 注册自定义规则：
 ```
 myValidation.registerRule(name, validationFn, msg)
 ```
@@ -85,7 +85,7 @@ myValidation.registerRule("integer", function (value, object) {
  > 同时校验失败的情况下必须返回false或者是调用myValidation.result生成的返回结果，否则视为校验成功。
 
 <br/>
-#####自定义返回错误提示：
+##### 自定义返回错误提示：
 有时候需要在验证的时候动态的生成返回错误，而不是返回默认错误，此时可以使用以下api：
 ```
 myValidation.result (result, msg)
@@ -101,7 +101,7 @@ myValidation.registerRule("returnMsg", function () {
 }, "此为默认提示，会被覆盖掉");
 ```
 <br/>
-#####分析验证结果：
+##### 分析验证结果：
 验证结果是个错误信息的数组,或者是一个key、value形式的json,但是表单验证的结果究竟是成功还是失败,我们无法马上得知。你可以通过遍历各个验证项的result字段,不断一个个相与来获得结果的boolean值,也可以直接使用我们的api函数：
 ```
 myValidation.analyseResult (result)
@@ -122,7 +122,9 @@ var result = myValidation.validation({
 result = myValidation.analyseResult(result) //result被转为boolean型
 ```
 ----
-###默认校验规则库:
+
+<br/>
+### 默认校验规则库:
 
 |	参数	|	参数描述	|	例子	|
 |:---|:---|:---|
