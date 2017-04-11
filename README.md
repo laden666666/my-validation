@@ -101,7 +101,7 @@ myValidation.registerRule("returnMsg", function () {
     return myValidation.result(false, "自定义错误提示");
 }, "此为默认提示，会被覆盖掉");
 ```
-<br/>
+
 ##### 分析验证结果：
 验证结果是个错误信息的数组,或者是一个key、value形式的json,但是表单验证的结果究竟是成功还是失败,我们无法马上得知。你可以通过遍历各个验证项的result字段,不断一个个相与来获得结果的boolean值,也可以直接使用我们的api函数：
 ```
