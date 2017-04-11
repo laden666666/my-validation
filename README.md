@@ -30,7 +30,7 @@ MyValidation.validation(ruleStringJson, values, isStringPath)
 |:---|:---|
 |	ruleStringJson	|	规则的字符串的集合	|
 |	values		|	要校验的字符串的集合	|
-|	isStringPath	|	是否启用类似微信小程序的子对象路径名做key	|
+|	isStringPath	|	是否启用lodash的_.property方法的子对象路径名做key方式	|
  >注意：
  >**规则的字符串**是校验的核心，格式是“规则1名[参数1,参数2...];规则2名[参 数1,参数2...]...”。
  >如：**“required;minSize[5]”**表示使用**required规则**校验，校验非空；然后 使用**minSize规则**校验，参数是5，表示字符串长度不能小于5
