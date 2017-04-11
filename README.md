@@ -123,7 +123,6 @@ result = myValidation.analyseResult(result) //result被转为boolean型
 ```
 ----
 
-<br/>
 ### 默认校验规则库:
 
 |	参数	|	参数描述	|	例子	|
