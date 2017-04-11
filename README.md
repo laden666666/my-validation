@@ -123,6 +123,7 @@ result = myValidation.analyseResult(result) //result被转为boolean型
 ```
 ----
 ###默认校验规则库:
+
 |	参数	|	参数描述	|	例子	|
 |:---|:---|:---|
 |	required	|	必填	|	required |
@@ -136,4 +137,5 @@ result = myValidation.analyseResult(result) //result被转为boolean型
 |	phone	|	电话	|	phone	|
 |	mobilePhone	|	手机	|	mobilePhone	|
 |	mobileOrPhone	|	电话或手机	|	mobileOrPhone	|
+
 目前仅提供几个笔者马上要使用的规则，其他规则大家可以自己通过myValidation.registerRule注册。
