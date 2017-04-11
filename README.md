@@ -85,8 +85,8 @@ myValidation.registerRule("integer", function (value, object) {
  >
  > 同时校验失败的情况下必须返回false或者是调用myValidation.result生成的返回结果，否则视为校验成功。
 
-<br/>
 ##### 自定义返回错误提示：
+
 有时候需要在验证的时候动态的生成返回错误，而不是返回默认错误，此时可以使用以下api：
 ```
 myValidation.result (result, msg)
@@ -95,7 +95,9 @@ myValidation.result (result, msg)
 |:---|:---|
 |	result	|	boolean型，校验的结果，仅当false时候表示验证失败	|
 |	msg		|	验证失败的字符串，提示这个字符串的优先级比默认字符串高	|
+
 如：
+
 ```
 myValidation.registerRule("returnMsg", function () {
     return myValidation.result(false, "自定义错误提示");
@@ -103,14 +105,19 @@ myValidation.registerRule("returnMsg", function () {
 ```
 
 ##### 分析验证结果：
+
 验证结果是个错误信息的数组,或者是一个key、value形式的json,但是表单验证的结果究竟是成功还是失败,我们无法马上得知。你可以通过遍历各个验证项的result字段,不断一个个相与来获得结果的boolean值,也可以直接使用我们的api函数：
+
 ```
 myValidation.analyseResult (result)
 ```
+
 |	参数	|	参数描述	|
 |:---|:---|
 |	result	|	validation的验证结果	|
+
 如：
+
 ```
 var result = myValidation.validation({
     "user.name" : "required;sizeMax[16]",
