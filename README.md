@@ -9,8 +9,8 @@ npm install git://github.com/laden666666/my-validation --save
 ```
 var myValidation = require("my-validation");
 ```
-
 如果是web环境直接script标签引用my-validation.js或者my-validation.min.js文件即可。
+
 ---
 ### 使用方法:
 ##### 根据规则字符串验证对象：
