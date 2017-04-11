@@ -122,6 +122,7 @@ var result = myValidation.validation({
 
 result = myValidation.analyseResult(result) //result被转为boolean型
 ```
+
 ----
 
 ### 默认校验规则库:
